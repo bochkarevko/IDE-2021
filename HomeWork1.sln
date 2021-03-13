@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArithmeticExprParser", "Ari
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{47017EBF-B90D-4460-A681-7B73C76B9A08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionCompiler", "ExpressionCompiler\ExpressionCompiler.csproj", "{8D180C40-BC25-4571-835C-629A9A9D8B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{47017EBF-B90D-4460-A681-7B73C76B9A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47017EBF-B90D-4460-A681-7B73C76B9A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47017EBF-B90D-4460-A681-7B73C76B9A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D180C40-BC25-4571-835C-629A9A9D8B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D180C40-BC25-4571-835C-629A9A9D8B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D180C40-BC25-4571-835C-629A9A9D8B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D180C40-BC25-4571-835C-629A9A9D8B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -6,10 +6,9 @@ namespace ArithmeticExprParser
     {
         static void Main()
         {
-            
+            Console.WriteLine("Enter expression:");
             string input;
             while((input = Console.ReadLine()) != null && input != ""){
-                Console.WriteLine("Enter expression:");
                 try
                 {
                     var expr = SimpleParser.Parse(input);
@@ -22,6 +21,7 @@ namespace ArithmeticExprParser
                     Console.WriteLine("Parsing error:");
                     Console.WriteLine("\t" + exc.Message);
                 }
+                Console.WriteLine("Enter expression:");
             }
         }
     }
