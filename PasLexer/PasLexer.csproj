@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Antlr4 Include="Hello.g4">
+            <Package>PasLexer</Package>
+            <Visitor>true</Visitor>
+            <Error>false</Error>
+            <Listener>true</Listener>
+        </Antlr4>
+        <Antlr4 Include="Pascal.g4">
+            <Package>PasLexer</Package>
+            <Visitor>true</Visitor>
+            <Error>false</Error>
+            <Listener>true</Listener>
+        </Antlr4>
+    </ItemGroup>
+    
+
+    <ItemGroup>
+      <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.2" />
+    </ItemGroup>
+
+</Project>
