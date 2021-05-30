@@ -41,5 +41,10 @@ namespace ArithmeticExprParser
         {
             return _myBuilder.ToString();
         }
+        
+        public void Reset()
+        {
+            _myBuilder.Clear();
+        }
     }
 }
