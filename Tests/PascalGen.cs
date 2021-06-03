@@ -9,7 +9,40 @@ namespace Tests
         private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
         private static readonly StringBuilder Builder = new();
 
-        public static string Gen(int size)
+        private static string GenSame(int size, Action gen)
+        {
+            Builder.Clear();
+            
+            for (var i = 0; i < size; ++i)
+            {
+                gen();
+                Builder.Append(' ');
+            }
+
+            return Builder.ToString();
+        }
+
+        public static string Numbers(int size)
+        {
+            return GenSame(size, GenNumber);
+        }
+        
+        public static string Comments(int size)
+        {
+            return GenSame(size, GenComment);
+        }
+        
+        public static string Identifiers(int size)
+        {
+            return GenSame(size, GenIdentifier);
+        }
+        
+        public static string CharStrings(int size)
+        {
+            return GenSame(size, GenCharString);
+        }
+
+        public static string RandomGen(int size)
         {
             Builder.Clear();
             for (var i = 0; i < size; ++i)
@@ -162,14 +195,9 @@ namespace Tests
                 Builder.Append(Chars[Rand.Next(0, Chars.Length)]);
             }
         }
-        
-        private static void GenComment(int depth = 0)
-        {
-            if (depth > 2 || (depth > 0 && Rand.Next(0, 2) == 0))
-            {
-                return;
-            }
 
+        private static void GenInsideComment()
+        {
             var which = Rand.Next(0, 2);
             if (which > 0)
             {
@@ -179,8 +207,35 @@ namespace Tests
             {
                 Builder.Append('{');
             }
+            Builder.Append(" inner text ");
+            if (which > 0)
+            {
+                Builder.Append("*)");
+            }
+            else
+            {
+                Builder.Append('}');
+            }
+        }
+
+        private static void GenComment()
+        {
+            var which = Rand.Next(0, 2);
+            if (which > 0)
+            {
+                Builder.Append("(*");
+            }
+            else
+            {
+                Builder.Append('{');
+            }
+
             Builder.Append(" some text ");
-            GenComment(depth + 1);
+            if (Rand.Next(0, 2) > 0)
+            {
+
+                GenInsideComment();
+            }
             Builder.Append(" more text ");
             if (which > 0)
             {

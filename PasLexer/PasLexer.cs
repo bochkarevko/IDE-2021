@@ -18,7 +18,7 @@ namespace PasLexer
         
         public static void Main(string[] args)
         {
-            const string input = "(* (* ... (* ... *) ... *) *) 1.15 1.1e-15 hello  $355FFA %01010 &1725 { { hello2 } } ";
+            const string input = "(* look at this (* { a nested comment} wow *) *) &123 -23.42e+666 'meh' hello %10101 $FA13";
             var tokens = Lex(input);
             foreach (var token in tokens)
             {
