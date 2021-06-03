@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\ArithmeticExprParser\ArithmeticExprParser.csproj" />
       <ProjectReference Include="..\ExpressionCompiler\ExpressionCompiler.csproj" />
+      <ProjectReference Include="..\PasLexer\PasLexer.csproj" />
     </ItemGroup>
 
 </Project>

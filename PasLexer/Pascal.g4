@@ -29,4 +29,4 @@ fragment HEXSEQUENCE    : '$' [0-9A-Fa-f]+ ;
 fragment SIGN           : '+' | '-' ;
 fragment SCALE          : ('e' | 'E') SIGN? DIGITSEQ ;
 
-WHITESPACE          : [\t\r\n] ;
+WHITESPACE          : [ \t\r\n];
