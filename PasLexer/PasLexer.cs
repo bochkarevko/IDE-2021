@@ -4,11 +4,11 @@ using Antlr4.Runtime.Tree;
 
 namespace PasLexer
 {
-    public class Class1
+    public class PasLexer
     {
         public static void Main(string[] args)
         {
-            String input = "(*...*) 1.15 1.1e-15 hello";
+            String input = "(* (* ... (* ... *) ... *) *) 1.15 1.1e-15 hello  { { hello2 } } ";
             var stream = CharStreams.fromString(input);
             var lexer = new Pascal(stream);
             var tokens = new BufferedTokenStream(lexer);
@@ -17,7 +17,7 @@ namespace PasLexer
             foreach (var token in tokens.GetTokens())
             {
                 Console.WriteLine(token.Text);
-                Console.WriteLine(token.Type);
+                Console.WriteLine(lexer.Vocabulary.GetSymbolicName(token.Type));
             }
         }
     }

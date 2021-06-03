@@ -2,30 +2,31 @@ lexer grammar Pascal;
 /*
  * Lexer Rules
  */
-// hex digits?
+//fragment LETTER     : [A-Za-z] ;
+//fragment DIGIT      : [0-9] ;
+//fragment HEXDIGIT   : [0-9A-Fa-f] ;
+//SYMBOL              : LETTER | DIGIT | HEXDIGIT ;
+ 
 IDENTIFIER          : [A-Za-z_] [A-Za-z0-9_]* ;
 
-COMMENT_1           : '(*' .*? '*)' ;
-COMMENT_2           : '{' .*? '}' ;
+COMMENT             : COMMENT_1 | COMMENT_2 | COMMENT_3;
+fragment COMMENT_1           : '(*' ('('*? COMMENT | ('('* | '*'*) ~[*])*? '*'*? '*)' ;
+fragment COMMENT_2           : '{' ((~('{')*?) COMMENT? ~('{')*?) '}' ;
+fragment COMMENT_3           : '//' ~('\n')* ;
 
-fragment DIGITSEQ   : [0-9]+  ;
-SIGN                : '+' | '-';
-SNUMBER             : SIGN DIGITSEQ;
-RNUMBER_1           : DIGITSEQ '.' DIGITSEQ;
-RNUMBER_2           : DIGITSEQ '.';
-SCALE               : ('e' | 'E') SIGN DIGITSEQ;
-RNUMSC_1            : RNUMBER_1 SCALE;
-RNUMSC_2            : RNUMBER_2 SCALE;
-NUMBER              : DIGITSEQ;
+CHARACTERSTRING     : '\'' (~ ('\'' | '\n'))* '\'' ;
 
-CHARSTR             : '\'' .*? '\'' ;
-// CHARSTR             : '\'' ('\'\'' | ~ ('\''))* '\'' ;
+UNSIGNEDNUMBER  : UNSIGNEDINTEGER | UNSIGNEDREAL ;
+SIGNEDNUMBER    : SIGN UNSIGNEDNUMBER ;
+
+fragment UNSIGNEDINTEGER    : DIGITSEQ | BINARYSEQUENCE | HEXSEQUENCE | OCTALSEQUENCE ;
+fragment UNSIGNEDREAL       : DIGITSEQ (('.' DIGITSEQ (SCALE)?)? | SCALE) ;
+
+fragment BINARYSEQUENCE : '%' [0-1]+ ;
+fragment OCTALSEQUENCE  : '&' [0-7]+ ;
+fragment DIGITSEQ       : [0-9]+ ;
+fragment HEXSEQUENCE    : '$' [0-9A-Fa-f]+ ;
+fragment SIGN           : '+' | '-' ;
+fragment SCALE          : ('e' | 'E') SIGN? DIGITSEQ ;
 
 WHITESPACE          : [\t\r\n] ;
-
-// special like + - ???
-SYMBOL              : ([A-Za-z0-9]) ;
-
-// is probably not possible in lexer
-// CONTROLSTR          : '#' [0-9]+ ;
-
